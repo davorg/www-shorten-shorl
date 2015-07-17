@@ -17,3 +17,4 @@ t/01version.t
 t/98pod-coverage.t
 t/99pod.t
 t/shorl.t
+META.json
