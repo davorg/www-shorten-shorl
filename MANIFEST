@@ -9,10 +9,6 @@ Build.PL
 MANIFEST
 META.yml
 README
-t/00load.t
-t/00load_a.t
-t/00load_b.t
-t/00noexp.t
 t/01version.t
 t/98pod-coverage.t
 t/99pod.t
