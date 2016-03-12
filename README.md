@@ -59,8 +59,6 @@ Iain Truskett spoon@cpan.org
 - Chase Whitener capoeirab@cpan.org -- current maintainer
 - Dave Cross dave@perlhacks.com
 
-=back
-
 # COPYRIGHT AND LICENSE
 
 See the main [WWW::Shorten](https://metacpan.org/pod/WWW::Shorten) docs.
