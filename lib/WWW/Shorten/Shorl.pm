@@ -44,7 +44,8 @@ sub makealongerlink {
     $shorl_url = "http://shorl.com/$shorl_url"
         unless $shorl_url =~ m!^http://!i;
 
-    my $resp = try { return $ua->get($shorl_url); } catch { warn $_; return undef };
+    my $resp
+        = try { return $ua->get($shorl_url); } catch { warn $_; return undef };
     return unless $resp;
     return if $resp->is_error;
     my ($url) = $resp->content =~ /URL=(.+)\"/;
