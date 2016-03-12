@@ -1,6 +1,6 @@
 # NAME
 
-WWW::Shorten::Shorl - Perl interface to [http://shorl.com](http://shorl.com)
+WWW::Shorten::Shorl - [![Build Status](https://travis-ci.org/p5-shorten/www-shorten-shorl.svg?branch=master)](https://travis-ci.org/p5-shorten/www-shorten-shorl)
 
 # SYNOPSIS
 
