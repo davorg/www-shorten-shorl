@@ -10,7 +10,7 @@ use URI ();
 use Try::Tiny qw(try catch);
 
 our @EXPORT  = qw(makeashorterlink makealongerlink);
-our $VERSION = '1.931';
+our $VERSION = '1.932';
 $VERSION = eval $VERSION;
 
 sub makeashorterlink {
