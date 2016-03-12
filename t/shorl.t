@@ -1,34 +1,64 @@
-use Test::More tests => 7;
+use strict;
+use warnings;
 
-BEGIN { use_ok WWW::Shorten::Shorl };
+use Test::More skip_all => 'Cannot accurately test due to changes at shorl.com';;
+use Try::Tiny qw(try catch);
+use WWW::Shorten::Shorl;
 
-my $url = 'http://code.mag-sol.com/WWW-Shorten/WWW-Shorten-1.98.tar.gz';
+can_ok('WWW::Shorten::Shorl', qw(makeashorterlink makealongerlink));
+can_ok('main', qw(makeashorterlink makealongerlink));
 
-{
-    my $shorl = makeashorterlink( $url );
+SKIP: {
+    my $code;
+    my $url = 'https://metacpan.org/pod/WWW::Shorten::Shorl?'.time;
 
-    ok ( (defined $shorl and $shorl =~ m!^ \Qhttp://shorl.com/\E ([a-z]+) $ !x),
-	    'make it shorter'
-       );
+    my $shorl;
+    my $err;
+    try { $shorl = makeashorterlink( $url ); } catch { $err = $_; };
+    ok($shorl, "makeashorterlink: got a shortened url");
+    is($err, undef, "makeashorterlink: no errors");
 
-    my $code = $1;
+    skip("can't shorten",4) unless $shorl;
 
-    is ( makealongerlink($shorl), $url, 'make it longer');
+    my $long;
+    $err = undef;
+    try { $long = makealongerlink($shorl); } catch { $err = $_; };
+    is($long, $url, 'makealongerlink: URL piece - correct link');
+    is($err, undef, 'makealongerlink: URL piece - no errors');
 
-    is ( makealongerlink($code), $url, 'make it longer by Id' );
+    if ($shorl =~ m{^http://shorl.com/(.*)$}) {
+        $code = $1;
+    }
+    ok($code, "got a code");
+    skip("no code",2) unless $url;
+
+    $long = undef;
+    $err = undef;
+    try { $long = makealongerlink($code); } catch { $err = $_; };
+    is ($long, $url, 'makealongerlink: code - correct link');
+    is($err, undef, 'makealongerlink: code - no errors');
 }
 
 
 {
-    my ($shorl, $password) = makeashorterlink( $url );
+    sleep(2);
+    my $url = 'https://metacpan.org/pod/WWW::Shorten::Shorl?'.time;
+    my ($shorl, $password, $err);
+    try { ($shorl, $password) = makeashorterlink($url); } catch { $err = $_; };
 
-    ok ( (defined $shorl and $shorl =~ m!^ \Qhttp://shorl.com/\E ([a-z]+) $ !x
-		and defined $password and $password =~ m!^ [a-z]+ $ !x),
-	    "make it shorter, get password [$shorl, $password]"
-       );
+    ok($shorl, "makeashorterlink: got a link");
+    ok($password, "makeashorterlink: got a password");
+    is($err, undef, "makeashorterlink: no error");
+
+    like($shorl, qr{^http://shorl.com/.*$}, 'makeashorterlink: correct link');
+    like($password, qr{^[a-z]+$}, 'makeashorterlink: correct password');
 }
 
-eval { &makeashorterlink() };
-ok($@);
-eval { &makealongerlink() };
-ok($@);
+my $err;
+$err = try { makeashorterlink(); } catch { $_ };
+ok($err, 'makeashorterlink: proper error response');
+$err = undef;
+$err = try { makealongerlink(); } catch { $_ };
+ok($err, 'makealongerlink: proper error response');
+
+done_testing();
