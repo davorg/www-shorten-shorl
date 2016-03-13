@@ -10,7 +10,7 @@ use URI ();
 use Try::Tiny qw(try catch);
 
 our @EXPORT  = qw(makeashorterlink makealongerlink);
-our $VERSION = '1.932';
+our $VERSION = '2.100';
 $VERSION = eval $VERSION;
 
 sub makeashorterlink {
@@ -91,6 +91,8 @@ L<WWW::Shorten::Shorl> makes the following functions available.
 
 =head2 makeashorterlink
 
+  my $short = try { makeashorterlink('http://www.example.com') } catch { warn $_ };
+
 The function C<makeashorterlink> will call use the web service, passing it
 your long URL and will return the shorter version. If used in a
 list context, then it will return both the shorter URL and the password.
@@ -98,6 +100,8 @@ list context, then it will return both the shorter URL and the password.
 Note that this service, unlike others, returns a unique code for every submission.
 
 =head2 makealongerlink
+
+  my $long = try { makealongerlink('abc11234234adfagv') } catch { warn $_ };
 
 The function C<makealongerlink> does the reverse. C<makealongerlink>
 will accept as an argument either the full short URL or just the

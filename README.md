@@ -36,6 +36,10 @@ a database of long URLs, each of which has a unique identifier.
 
 ## makeashorterlink
 
+```perl
+my $short = try { makeashorterlink('http://www.example.com') } catch { warn $_ };
+```
+
 The function ```makeashorterlink``` will call use the web service, passing it
 your long URL and will return the shorter version. If used in a
 list context, then it will return both the shorter URL and the password.
@@ -43,6 +47,10 @@ list context, then it will return both the shorter URL and the password.
 Note that this service, unlike others, returns a unique code for every submission.
 
 ## makealongerlink
+
+```perl
+my $long = try { makealongerlink('abc11234234adfagv') } catch { warn $_ };
+```
 
 The function ```makealongerlink``` does the reverse. ```makealongerlink```
 will accept as an argument either the full short URL or just the
