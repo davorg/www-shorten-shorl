@@ -8,11 +8,12 @@ perl:
   - "5.12"
   - "5.10"
   - "5.8"
-env:
-  - "AUTOMATED_TESTING=1 AUTHOR_TESTING=1 RELEASE_TESTING=1"
 install:
-  - "cpanm -n Test::More Test::Pod Test::Pod::Coverage"
-  - "cpanm -n --installdeps ."
+  - cpanm JSON::PP Dist::Zilla
+  - dzil authordeps --missing | cpanm -n || { cat ~/.cpanm/build.log ; false ; }
+  - dzil listdeps --author --missing | cpanm -n || { cat ~/.cpanm/build.log ; false ; }
+script:
+  - dzil test --author --release
 sudo: false
 notifications:
   email: false
