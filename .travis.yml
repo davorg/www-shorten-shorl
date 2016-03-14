@@ -9,9 +9,9 @@ perl:
   - "5.10"
   - "5.8"
 env:
-  - "AUTOMATED_TESTING=1 AUTHOR_TESTING=1"
+  - "AUTOMATED_TESTING=1 AUTHOR_TESTING=1 RELEASE_TESTING=1"
 install:
-  - "cpanm -n EV Test::More Test::Pod Test::Pod::Coverage"
+  - "cpanm -n Test::More Test::Pod Test::Pod::Coverage"
   - "cpanm -n --installdeps ."
 sudo: false
 notifications:
