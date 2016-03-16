@@ -117,9 +117,13 @@ Iain Truskett <spoon@cpan.org>
 
 =over
 
-=item Chase Whitener C<capoeirab@cpan.org> -- current maintainer
+=item *
 
-=item Dave Cross C<dave@perlhacks.com>
+Chase Whitener C<capoeirab@cpan.org> -- current maintainer
+
+=item *
+
+Dave Cross C<dave@perlhacks.com>
 
 =back
 

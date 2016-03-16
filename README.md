@@ -64,7 +64,7 @@ Iain Truskett spoon@cpan.org
 
 # CONTRIBUTORS
 
-- Chase Whitener capoeirab@cpan.org -- current maintainer
+- Chase Whitener capoeirab@cpan.org
 - Dave Cross dave@perlhacks.com
 
 # COPYRIGHT AND LICENSE
