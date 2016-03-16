@@ -62,10 +62,10 @@
          "web" : "https://github.com/p5-shorten/www-shorten-shorl"
       }
    },
-   "version" : "2.101",
+   "version" : "2.102",
    "x_contributors" : [
-      "Chase Whitener <cwhitener@gmail.com>",
-      "Dave Cross <dave@dave.org.uk>"
+      "Chase Whitener <capoeirab@cpan.org>",
+      "Dave Cross <davecross@cpan.org>"
    ]
 }
 

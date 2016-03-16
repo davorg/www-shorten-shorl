@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.101     2016-03-16 19:07:27-04:00 America/New_York
     - added author and release tests
     - made Travis test a bit more in-depth
 
